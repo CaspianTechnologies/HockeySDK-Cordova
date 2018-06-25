@@ -14,7 +14,8 @@
       "2.2.2": {
         "cordova": ">=4.2.0",
         "cordova-android": ">=4.0.0",
-        "cordova-ios": ">=3.8.0"
+        "cordova-ios": ">=3.8.0",
+        "cordova-windows": ">=6.0.0"
       }
     }
   },

@@ -12,6 +12,7 @@
         <engine name="cordova-android" version=">=4.0.0" />
         <engine name="cordova-plugman" version=">=4.2.0" />
         <engine name="cordova-ios" version=">=3.8.0" />
+        <engine name="cordova-windows" version=">=6.0.0" />
     </engines>
     <access origin="*.hockeyapp.net" />
     
@@ -70,5 +71,9 @@
         <framework src="Security.framework" />
         <framework src="SystemConfiguration.framework" />
         <framework src="UIKit.framework" />
+    </platform>
+
+    <platform name="windows">
+
     </platform>
 </plugin>
