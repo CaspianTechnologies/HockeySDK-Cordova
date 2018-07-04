@@ -258,16 +258,10 @@ public class HockeyApp extends CordovaPlugin {
         
         if (action.equals("addMetaData")) {
             try {
-                String jsonArgs = args.optString(0);
-                JSONObject rawMetaData = new JSONObject(jsonArgs);
-                Iterator<String> keys = rawMetaData.keys();
+                String log = args.optString(0);
+                this.crashListener.putMetaData(log);
                 boolean success = true;
-            
-                while (keys.hasNext()) {
-                    String key = keys.next();
-                    success = success && this.crashListener.putMetaData(key, rawMetaData.getString(key));
-                }
-                
+
                 if (success) {
                     callbackContext.success();
                 } else {
@@ -275,7 +269,7 @@ public class HockeyApp extends CordovaPlugin {
                 }
                 
                 return success;
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 callbackContext.error("failed to parse metadata. Ignoring....");
                 return false;
             }
@@ -323,12 +317,11 @@ class SingleThreadFeedbackManagerListener extends FeedbackManagerListener {
 class ConfiguredCrashManagerListener extends CrashManagerListener {
     private boolean autoSend = false;
     private boolean ignoreDefaultHandler = false;
-    private JSONObject crashMetaData;
+    private String crashMetaData = "";
     
     public ConfiguredCrashManagerListener(boolean autoSend, boolean ignoreDefaultHandler) {
         this.autoSend = autoSend;
         this.ignoreDefaultHandler = ignoreDefaultHandler;
-        this.crashMetaData = new JSONObject();
     }
     
     @Override
@@ -346,12 +339,8 @@ class ConfiguredCrashManagerListener extends CrashManagerListener {
         return crashMetaData.toString();
     }
     
-    public boolean putMetaData(String key, String value) {
-        try {
-            this.crashMetaData.put(key, value);
-            return true;
-        } catch (JSONException e) {
-            return false;
-        }
+    public boolean putMetaData(String log) {
+        this.crashMetaData = log;
+        return true;
     }
 }

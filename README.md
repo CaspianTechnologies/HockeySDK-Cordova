@@ -109,10 +109,10 @@ hockeyapp.trackEvent(null, null, "EVENT_NAME");
 By default, any time your app crashes, the report sent to HockeyApp will include the call stack, as well as various other pieces of information (e.g. OS, device manufacturer) to help narrow down and/or repro the cause of the issue. However, it can be very helpful to understand the context of the users app when inspecting a crash report, and therefore, if you need to "attach" additional metadata to a crash report, you can simply call the following method:
 
 ```javascript
-hockeyapp.addMetaData(null, null { someCustomProp: 23, anotherProp: "Value" });
+hockeyapp.addMetaData(null, null, "Logs...");
 ```
  
-The metadata property accepts an arbitrary JavaScript object, and therefore, can be used to log any strings, booleans, numbers, etc. Subsequent calls to the `addMetaData` method will "merge" the objects together such that any future crash reports will include a union of all object properties that were specified by any call to `addMetaData` since the last crash was reported.
+The metadata property accepts a String, and therefore, can be used to add logs. Subsequent calls to the `addMetaData` method will "merge" the objects together such that any future crash reports will include a union of all object properties that were specified by any call to `addMetaData` since the last crash was reported.
 
 When you view a crash report in the HockeyApp portal, you can see the metadata that you attached to it by selecting the **Description** button underneath the **Data** section within the **Crash Logs** tab of the respective crash report.
 
@@ -141,7 +141,7 @@ The HockeyApp API is exposed to your app via the global `hockeyapp` object, whic
 ### hockeyapp.addMetaData
 
 ```javascript
-hockeyapp.addMetaData(successCallback: function, errorCallback: function, metadata: Object): void
+hockeyapp.addMetaData(successCallback: function, errorCallback: function, metadata: String): void
 ```
 
 Attaches arbitrary metadata to the next crash report in order to provide more context about the user's state. Subsequent calls to this method will "merge" the metadata together into a single JavaScript object that will be sent along with the next crash report.
@@ -152,7 +152,7 @@ Attaches arbitrary metadata to the next crash report in order to provide more co
 
 2. **errorCallback** - `Function` that will be triggered when adding the metadata failed for some reason.
 
-3. **metaData** - A JavaScript object that describes the metadata (i.e. properties and values) that you wuold like to attach to the next crash report.
+3. **metaData** - A String (e.g. logs) that you would like to attach to the next crash report.
 
 ### hockeyapp.feedback
 

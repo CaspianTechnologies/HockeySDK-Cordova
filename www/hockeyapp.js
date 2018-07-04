@@ -119,7 +119,7 @@ var hockeyapp = {
             return;
         }
 
-        exec(success, failure, "HockeyApp", "addMetaData", [JSON.stringify(data)]);
+        exec(success, failure, "HockeyApp", "addMetaData", [data]);
     },
     trackEvent: function (success, failure, eventName) {
         if (isWindows()) {
