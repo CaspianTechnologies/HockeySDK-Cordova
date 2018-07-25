@@ -17,7 +17,7 @@ import net.hockeyapp.android.LoginManagerListener;
 import net.hockeyapp.android.metrics.MetricsManager;
 import net.hockeyapp.android.objects.FeedbackMessage;
 import net.hockeyapp.android.Tracking;
-import net.hockeyapp.android.UpdateManager;
+// import net.hockeyapp.android.UpdateManager;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -107,10 +107,10 @@ public class HockeyApp extends CordovaPlugin {
             FeedbackManager.register(cordova.getActivity(), appId, shouldCreateNewFeedbackThread ? new SingleThreadFeedbackManagerListener() : null);
             this.crashListener = new ConfiguredCrashManagerListener(autoSend, ignoreDefaultHandler);
             
-            final int checkForUpdateMode = args.optInt(6, CHECK_UPDATE_ON_STARTUP);
-            if (checkForUpdateMode == CHECK_UPDATE_ON_STARTUP) {
-                UpdateManager.register(cordova.getActivity(), appId);
-            }
+            // final int checkForUpdateMode = args.optInt(6, CHECK_UPDATE_ON_STARTUP);
+            // if (checkForUpdateMode == CHECK_UPDATE_ON_STARTUP) {
+            //     UpdateManager.register(cordova.getActivity(), appId);
+            // }
 
             MetricsManager.register(cordova.getActivity().getApplication(), appId);
             CrashManager.register(cordova.getActivity(), appId, this.crashListener);
@@ -164,11 +164,11 @@ public class HockeyApp extends CordovaPlugin {
             return false;
         } 
         
-        if (action.equals("checkForUpdate")) {
-            UpdateManager.register(cordova.getActivity(), appId);
-            callbackContext.success();
-            return true;
-        }
+        // if (action.equals("checkForUpdate")) {
+        //     UpdateManager.register(cordova.getActivity(), appId);
+        //     callbackContext.success();
+        //     return true;
+        // }
 
         if (action.equals("setUserEmail")) {
             String userEmail = args.optString(0);

@@ -42,7 +42,7 @@
 
         [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:token
                                                                delegate:self];
-        [[BITHockeyManager sharedHockeyManager] updateManager].updateSetting = checkForUpdateMode;
+        // [[BITHockeyManager sharedHockeyManager] updateManager].updateSetting = checkForUpdateMode;
         [[BITHockeyManager sharedHockeyManager] startManager];
 
         // Set authentication mode prior to verifying the user
@@ -127,18 +127,18 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void) checkForUpdate:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* pluginResult = nil;
-    if(initialized == YES) {
-        [[BITHockeyManager sharedHockeyManager].updateManager checkForUpdate];
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    }
-    else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"hockeyapp cordova plugin is not started, call hockeyapp.start(successcb, errorcb, hockeyapp_id) first!"];
-    }
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
+// - (void) checkForUpdate:(CDVInvokedUrlCommand*)command
+// {
+//     CDVPluginResult* pluginResult = nil;
+//     if(initialized == YES) {
+//         [[BITHockeyManager sharedHockeyManager].updateManager checkForUpdate];
+//         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+//     }
+//     else {
+//         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"hockeyapp cordova plugin is not started, call hockeyapp.start(successcb, errorcb, hockeyapp_id) first!"];
+//     }
+//     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+// }
 
 - (void) forceCrash:(CDVInvokedUrlCommand *)command {
     [[BITHockeyManager sharedHockeyManager].crashManager generateTestCrash];
