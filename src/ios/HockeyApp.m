@@ -43,6 +43,7 @@
         [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:token
                                                                delegate:self];
         // [[BITHockeyManager sharedHockeyManager] updateManager].updateSetting = checkForUpdateMode;
+        [[BITHockeyManager sharedHockeyManager] setDisableUpdateManager: YES];
         [[BITHockeyManager sharedHockeyManager] startManager];
 
         // Set authentication mode prior to verifying the user
